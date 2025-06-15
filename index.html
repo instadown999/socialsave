@@ -3,148 +3,58 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Download Reels, Stories, Videos from Instagram, Facebook and YouTube. Fast and free video downloader by SocialSaver.">
-  <meta name="keywords" content="Instagram Downloader, Facebook Video Downloader, Story Download, YouTube Video Download">
-  <meta name="author" content="SocialSaver">
-  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9652/9652994.png" type="image/png">
-  <title>SocialSaver - Instagram, Facebook, YouTube Video Downloader</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: #fff;
-    }
-    header {
-      background: #111827;
-      text-align: center;
-      padding: 2rem 1rem;
-      border-bottom: 2px solid #3b82f6;
-    }
-    header img {
-      width: 70px;
-    }
-    header h1 {
-      font-size: 2.2rem;
-      margin: 0.5rem 0 0.2rem;
-      color: #60a5fa;
-    }
-    header p {
-      font-size: 1rem;
-      color: #cbd5e1;
-    }
-    .section {
-      max-width: 720px;
-      background: #1e293b;
-      padding: 2rem;
-      margin: 2rem auto;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-    .section h2 {
-      font-size: 1.5rem;
-      border-left: 5px solid #3b82f6;
-      padding-left: 10px;
-    }
-    input[type="text"] {
-      width: 100%;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 6px;
-      margin-top: 10px;
-      font-size: 1rem;
-      background: #334155;
-      color: white;
-    }
-    button {
-      margin-top: 10px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      background: #3b82f6;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    iframe {
-      display: block;
-      margin: 20px auto;
-      width: 100%;
-      max-width: 500px;
-      height: 480px;
-      border: none;
-    }
-    footer {
-      text-align: center;
-      background: #0f172a;
-      color: #9ca3af;
-      padding: 1rem;
-      margin-top: 3rem;
-    }
-  </style>
+  <meta name="description" content="Download Instagram Reels, Stories, Posts and more with SocialSaver - Fast and Free!">
+  <title>SocialSaver - Download Reels, Stories, Posts</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <img src="https://cdn-icons-png.flaticon.com/512/9652/9652994.png" alt="Logo">
     <h1>SocialSaver</h1>
-    <p>Download Reels, Stories & Videos from Instagram, Facebook & YouTube</p>
+    <p>Download Instagram Reels, Stories, and Posts – Fast & Free</p>
   </header>
 
-  <section class="section">
-    <h2>📸 Instagram Downloader</h2>
-    <input type="text" id="instaInput" placeholder="Paste Instagram URL">
-    <button onclick="downloadInstagram()">Download</button>
-    <div id="instaResult"></div>
-  </section>
+  <main>
+    <section class="downloader">
+      <h2>Instagram Downloader</h2>
+      <input type="text" placeholder="Paste Instagram link here..." id="instaInput">
+      <button onclick="downloadInsta()">Download</button>
+      <div id="instaResult"></div>
+    </section>
 
-  <section class="section">
-    <h2>📘 Facebook Downloader</h2>
-    <input type="text" id="fbInput" placeholder="Paste Facebook URL">
-    <button onclick="downloadFacebook()">Download</button>
-    <div id="fbResult"></div>
-  </section>
+    <section class="how-to">
+      <h3>How to Use?</h3>
+      <ol>
+        <li>Go to Instagram and copy the link of the reel/story/post.</li>
+        <li>Paste it into the box above.</li>
+        <li>Click on "Download" and wait for it to process.</li>
+      </ol>
+    </section>
 
-  <section class="section">
-    <h2>▶️ YouTube Downloader</h2>
-    <input type="text" id="ytInput" placeholder="Paste YouTube URL">
-    <button onclick="downloadYouTube()">Go to Downloader</button>
-  </section>
+    <section class="note">
+      <p><strong>Note:</strong> This tool does not host any content. All content is served via Instagram’s public embed feature.</p>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 SocialSaver. All rights reserved.</p>
   </footer>
 
   <script>
-    function downloadInstagram() {
-      const url = document.getElementById('instaInput').value;
-      const match = url.match(/(?:instagram\.com\/p\/|reel\/|tv\/)([\w-]+)/);
-      const result = document.getElementById('instaResult');
-      if (match) {
-        const code = match[1];
-        result.innerHTML = `<iframe src="https://www.instagram.com/p/${code}/embed" allowtransparency="true"></iframe>`;
+    function downloadInsta() {
+      const input = document.getElementById("instaInput").value;
+      const result = document.getElementById("instaResult");
+      if (input.includes("instagram.com")) {
+        result.innerHTML = `<iframe src="https://www.instagram.com/p/${extractCode(input)}/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
       } else {
-        result.innerHTML = '<p style="color:red;">❌ Invalid Instagram URL</p>';
+        result.innerHTML = "<p>Please enter a valid Instagram URL.</p>";
       }
     }
 
-    function downloadFacebook() {
-      const url = document.getElementById('fbInput').value;
-      const result = document.getElementById('fbResult');
-      if (url.includes("facebook.com")) {
-        result.innerHTML = `<iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}" style="height:480px;" allowfullscreen></iframe>`;
-      } else {
-        result.innerHTML = '<p style="color:red;">❌ Invalid Facebook URL</p>';
-      }
-    }
-
-    function downloadYouTube() {
-      const url = document.getElementById('ytInput').value;
-      if (url.includes("youtube.com") || url.includes("youtu.be")) {
-        window.open(`https://yt5s.io/en?q=${encodeURIComponent(url)}`, '_blank');
-      } else {
-        alert("❌ Invalid YouTube URL");
-      }
+    function extractCode(url) {a
+      const matches = url.match(/instagram\.com\/(p|reel|tv)\/([a-zA-Z0-9-_]+)/);
+      return matches ? matches[2] : "";
     }
   </script>
 </body>
