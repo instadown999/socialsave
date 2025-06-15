@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Download Instagram Reels, Stories, Posts and more with SocialSaver - Fast and Free!">
+  <title>SocialSaver - Download Reels, Stories, Posts</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>SocialSaver</h1>
+    <p>Download Instagram Reels, Stories, and Posts – Fast & Free</p>
+  </header>
+
+  <main>
+    <section class="downloader">
+      <h2>Instagram Downloader</h2>
+      <input type="text" placeholder="Paste Instagram link here..." id="instaInput">
+      <button onclick="downloadInsta()">Download</button>
+      <div id="instaResult"></div>
+    </section>
+
+    <section class="how-to">
+      <h3>How to Use?</h3>
+      <ol>
+        <li>Go to Instagram and copy the link of the reel/story/post.</li>
+        <li>Paste it into the box above.</li>
+        <li>Click on "Download" and wait for it to process.</li>
+      </ol>
+    </section>
+
+    <section class="note">
+      <p><strong>Note:</strong> This tool does not host any content. All content is served via Instagram’s public embed feature.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SocialSaver. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function downloadInsta() {
+      const input = document.getElementById("instaInput").value;
+      const result = document.getElementById("instaResult");
+      if (input.includes("instagram.com")) {
+        result.innerHTML = `<iframe src="https://www.instagram.com/p/${extractCode(input)}/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>`;
+      } else {
+        result.innerHTML = "<p>Please enter a valid Instagram URL.</p>";
+      }
+    }
+
+    function extractCode(url) {a
+      const matches = url.match(/instagram\.com\/(p|reel|tv)\/([a-zA-Z0-9-_]+)/);
+      return matches ? matches[2] : "";
+    }
+  </script>
+</body>
+</html>
