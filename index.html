@@ -3,127 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Download Reels, Stories, Videos from Instagram, Facebook and YouTube. Fast and free video downloader by SocialSaver.">
-  <meta name="keywords" content="Instagram Downloader, Facebook Video Downloader, Story Download, YouTube Video Download">
+  <meta name="description" content="Free online downloader for Instagram Reels, Facebook Stories, and YouTube videos. Fast and secure video downloads with SocialSaver.">
+  <meta name="keywords" content="Instagram Video Downloader, Reels Saver, Facebook Video Download, YouTube MP4 Downloader, Social Media Download Tool">
   <meta name="author" content="SocialSaver">
+  <meta property="og:title" content="SocialSaver - Download Instagram, Facebook, and YouTube Videos">
+  <meta property="og:description" content="Fast and secure way to download Reels, Stories, and Videos from social platforms">
+  <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/9652/9652994.png">
+  <meta property="og:type" content="website">
   <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/9652/9652994.png" type="image/png">
-  <title>SocialSaver - Instagram, Facebook, YouTube Video Downloader</title>
+  <title>SocialSaver - Download from Instagram, Facebook, YouTube</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: #f3f4f6;
+      background: #f9fafb;
       color: #111827;
     }
     header {
-      background: #2563eb;
+      background: #1d4ed8;
       text-align: center;
       padding: 2rem 1rem;
     }
     header img {
-      width: 64px;
+      width: 72px;
+      margin-bottom: 10px;
     }
     header h1 {
-      font-size: 2rem;
-      margin: 0.5rem 0 0.2rem;
-      color: #fff;
+      font-size: 2.5rem;
+      margin: 0;
+      color: #ffffff;
     }
     header p {
-      font-size: 1rem;
-      color: #dbeafe;
+      font-size: 1.1rem;
+      color: #c7d2fe;
+      margin-top: 5px;
     }
     .section {
-      max-width: 700px;
+      max-width: 720px;
       background: #ffffff;
       padding: 2rem;
       margin: 2rem auto;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
     .section h2 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       margin-bottom: 0.5rem;
-      color: #1e40af;
+      color: #1e3a8a;
     }
     input[type="text"] {
       width: 100%;
-      padding: 12px;
+      padding: 0.75rem;
       border: 1px solid #d1d5db;
       border-radius: 6px;
-      margin-top: 10px;
       font-size: 1rem;
+      margin-top: 10px;
     }
     button {
-      margin-top: 12px;
-      padding: 10px 24px;
+      margin-top: 10px;
+      padding: 10px 20px;
       font-size: 1rem;
+      background: #2563eb;
       border: none;
       border-radius: 6px;
-      background: #2563eb;
-      color: white;
-      font-weight: 500;
+      color: #fff;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.3s ease;
     }
     button:hover {
-      background: #1d4ed8;
+      background: #1e40af;
     }
-    iframe {
-      display: block;
-      margin: 20px auto 0;
-      width: 100%;
-      max-width: 500px;
-      height: 480px;
-      border: none;
+    .preview {
+      margin-top: 15px;
+      text-align: center;
+    }
+    .preview img {
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .copy-link {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: #10b981;
+      cursor: pointer;
+      text-decoration: underline;
     }
     footer {
       text-align: center;
       background: #1e293b;
       color: #cbd5e1;
       padding: 1rem;
-      margin-top: 3rem;
+      margin-top: 4rem;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://cdn-icons-png.flaticon.com/512/9652/9652994.png" alt="Logo">
+    <img src="https://cdn-icons-png.flaticon.com/512/9652/9652994.png" alt="SocialSaver Logo">
     <h1>SocialSaver</h1>
-    <p>Fast & Free Downloader for Instagram, Facebook & YouTube</p>
+    <p>Fastest way to download from Instagram, Facebook & YouTube</p>
   </header>
 
   <section class="section">
     <h2>📸 Instagram Downloader</h2>
     <input type="text" id="instaInput" placeholder="Paste Instagram URL">
     <button onclick="downloadInstagram()">Download</button>
-    <div id="instaResult"></div>
+    <div id="instaResult" class="preview"></div>
   </section>
 
   <section class="section">
     <h2>📘 Facebook Downloader</h2>
     <input type="text" id="fbInput" placeholder="Paste Facebook URL">
     <button onclick="downloadFacebook()">Download</button>
-    <div id="fbResult"></div>
+    <div id="fbResult" class="preview"></div>
   </section>
 
   <section class="section">
     <h2>▶️ YouTube Downloader</h2>
     <input type="text" id="ytInput" placeholder="Paste YouTube URL">
     <button onclick="downloadYouTube()">Go to Downloader</button>
+    <p class="copy-link" onclick="copyURL('ytInput')">📋 Copy YouTube link</p>
   </section>
 
   <footer>
-    <p>&copy; 2025 SocialSaver. All rights reserved.</p>
+    <p>&copy; 2025 SocialSaver. Built with ❤️ to make downloading easy.</p>
   </footer>
 
   <script>
     function downloadInstagram() {
       const url = document.getElementById('instaInput').value;
-      const match = url.match(/(?:instagram\.com\/p\/|reel\/|tv\/)([\w-]+)/);
       const result = document.getElementById('instaResult');
+      const match = url.match(/(?:instagram\.com\/p\/|reel\/|tv\/)([\w-]+)/);
       if (match) {
         const code = match[1];
-        result.innerHTML = `<iframe src="https://www.instagram.com/p/${code}/embed" allowtransparency="true"></iframe>`;
+        result.innerHTML = `<iframe src="https://www.instagram.com/p/${code}/embed" width="100%" height="480" allowtransparency="true"></iframe>` +
+          `<p class='copy-link' onclick="copyURL('instaInput')">📋 Copy Instagram link</p>`;
       } else {
         result.innerHTML = '<p style="color:red;">❌ Invalid Instagram URL</p>';
       }
@@ -133,7 +148,8 @@
       const url = document.getElementById('fbInput').value;
       const result = document.getElementById('fbResult');
       if (url.includes("facebook.com")) {
-        result.innerHTML = `<iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}" style="height:480px;" allowfullscreen></iframe>`;
+        result.innerHTML = `<iframe src="https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(url)}" width="100%" height="480" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen></iframe>` +
+          `<p class='copy-link' onclick="copyURL('fbInput')">📋 Copy Facebook link</p>`;
       } else {
         result.innerHTML = '<p style="color:red;">❌ Invalid Facebook URL</p>';
       }
@@ -146,6 +162,13 @@
       } else {
         alert("❌ Invalid YouTube URL");
       }
+    }
+
+    function copyURL(id) {
+      const input = document.getElementById(id);
+      navigator.clipboard.writeText(input.value).then(() => {
+        alert('✅ Link copied to clipboard!');
+      });
     }
   </script>
 </body>
